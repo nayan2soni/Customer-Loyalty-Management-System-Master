@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Rewards</title>
+    <link rel="stylesheet" href="../public/css/style.css">
+</head>
+<body>
+    <div class="navbar">
+        <a href="admin-dashboard.html">Dashboard</a>
+        <a href="rewards.html">Manage Rewards</a>
+        <a href="index.html">Logout</a>
+    </div>
+
+    <h1>Manage Rewards</h1>
+
+    <form id="rewardForm">
+        <input type="text" id="name" placeholder="Reward Name" required>
+        <input type="number" id="pointsRequired" placeholder="Points Required" required>
+        <textarea id="description" placeholder="Description"></textarea>
+        <button type="submit">Create Reward</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Points Required</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="rewardTable">
+            <!-- Rewards will be dynamically loaded here -->
+        </tbody>
+    </table>
+
+    <script src="js/scripts.js"></script>
+</body>
+</html>

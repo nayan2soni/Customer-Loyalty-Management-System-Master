@@ -12,13 +12,14 @@ const getAllCustomers = asyncHandler(async (req, res) => {
     res.json(customers);
 });
 
-// @desc Create new customer
-// @route POST /customers
-// @access Private
+// @desc Register a new customer
+// @route POST /customers/register
+// @access Public
 const createNewCustomer = asyncHandler(async (req, res) => {
-    const { name, email } = req.body;
+    const { name, email, phone, address } = req.body;
 
-    if (!name || !email) {
+    // Validate request data
+    if (!name || !email || !phone || !address) {
         return res.status(400).json({ message: 'All fields are required' });
     }
 
@@ -27,12 +28,12 @@ const createNewCustomer = asyncHandler(async (req, res) => {
         return res.status(409).json({ message: 'Duplicate email' });
     }
 
-    const customer = await Customer.create({ name, email });
+    const newCustomer = await Customer.create({ name, email, phone, address });
 
-    if (customer) {
-        res.status(201).json({ message: `Customer ${name} created` });
+    if (newCustomer) {
+        res.status(201).json({ message: 'Customer registered successfully', customer: newCustomer });
     } else {
-        res.status(400).json({ message: 'Invalid customer data received' });
+        res.status(400).json({ message: 'Invalid customer data' });
     }
 });
 
@@ -40,16 +41,18 @@ const createNewCustomer = asyncHandler(async (req, res) => {
 // @route PATCH /customers
 // @access Private
 const updateCustomer = asyncHandler(async (req, res) => {
-    const { id, name, email } = req.body;
+    const { id, name, email, phone, address } = req.body;
 
     const customer = await Customer.findById(id).exec();
     if (!customer) return res.status(404).json({ message: 'Customer not found' });
 
     if (name) customer.name = name;
     if (email) customer.email = email;
+    if (phone) customer.phone = phone;
+    if (address) customer.address = address;
 
     const updatedCustomer = await customer.save();
-    res.json({ message: `Customer ${updatedCustomer.name} updated` });
+    res.json({ message: `Customer ${updatedCustomer.name} updated`, customer: updatedCustomer });
 });
 
 // @desc Delete a customer

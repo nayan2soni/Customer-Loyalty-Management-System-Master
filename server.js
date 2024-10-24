@@ -22,7 +22,7 @@ connectDB();
 
 // Middleware
 app.use(logger); // Custom logger middleware
-app.use(cors(corsOptions)); // CORS setup
+//app.use(cors(corsOptions)); // CORS setup
 app.use(express.json()); // Parse incoming JSON requests
 app.use(cookieParser()); // Parse cookies
 
@@ -48,6 +48,11 @@ app.all('*', (req, res) => {
     }
 });
 
+
+//temp test
+app.use(cors());
+
+
 // Custom error handler middleware
 app.use(errorHandler);
 
@@ -60,5 +65,5 @@ mongoose.connection.once('open', () => {
 // Handle MongoDB connection errors
 mongoose.connection.on('error', (err) => {
     console.error(err);
-    logEvents(`${err.no}: ${err.code}\t${err.syscall}\t${err.hostname}`, 'mongoErrLog.log');
+    logEvents(`${err.name}: ${err.message}\t${err.stack}`, 'mongoErrLog.log');
 });

@@ -19,3 +19,61 @@ body {
     place-content: center;
     padding: 1rem;
 }
+
+h1, h2 {
+    color: #333;
+    text-align: center;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    background-color: #007bff;
+    padding: 10px;
+}
+
+.navbar a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+form {
+    max-width: 400px;
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input, textarea, select, button {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+table {
+    margin: 20px auto;
+    width: 80%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}

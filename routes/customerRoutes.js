@@ -7,4 +7,6 @@ router.route('/')
     .patch(customerControllers.updateCustomer)     // Update a customer
     .delete(customerControllers.deleteCustomer);   // Delete a customer
 
+router.post('/register', customerControllers.createNewCustomer);
+
 module.exports = router;
